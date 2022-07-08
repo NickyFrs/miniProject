@@ -1,5 +1,0 @@
-os.environ.setdefault("IP", "0.0.0.0")
-os.environ.setdefault("PORT", 5000)
-os.environ.setdefault("SECRET_KEY", "F6AB7DE672CD6D519FE6515C6C783")
-os.environ.setdefault("MONGO_URI", "")
-os.environ.setdefault("MONGO_DBNAME", "task_manager")

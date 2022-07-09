@@ -3,8 +3,9 @@ from taskManager import app, db
 from taskManager.models import Category, Task
 
 
-@app.route("/")z
-def home():
+@app.route("/")
+@app.route("/get_task")
+def get_task():
     return render_template("tasks.html", tasks=tasks)
 
 

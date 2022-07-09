@@ -27,9 +27,11 @@ def taskmanager():
         if uri.startswith("postgres://"):
             uri = uri.replace("postgres://", "postgresql://", 1)
         app.config["SQLALCHEMY_DATABASE_URI"] = uri  # Heroku
-
-    db = SQLAlchemy(app)
-    mongo = PyMongo(db)
-    
+        
     return app
+
+db = SQLAlchemy(taskmanager)
+mongo = PyMongo(db)
+    
+    
 

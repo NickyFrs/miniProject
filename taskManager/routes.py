@@ -1,5 +1,5 @@
 from flask import Blueprint, flash, render_template, request, redirect, url_for, session
-from taskManager import app, db
+from taskManager import taskmanager, db
 from taskManager.models import Category, Task
 
 

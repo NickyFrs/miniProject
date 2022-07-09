@@ -30,4 +30,6 @@ def taskmanager():
 
     db = SQLAlchemy(app)
     mongo = PyMongo(db)
+    
+    return app
 

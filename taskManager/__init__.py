@@ -28,6 +28,6 @@ def taskmanager():
             uri = uri.replace("postgres://", "postgresql://", 1)
         app.config["SQLALCHEMY_DATABASE_URI"] = uri  # Heroku
 
-db = SQLAlchemy(app)
-mongo = PyMongo(db)
+    db = SQLAlchemy(app)
+    mongo = PyMongo(db)
 

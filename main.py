@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from .extensions import mongo, taskdb
+from website.extensions import mongo, taskdb
 
 main = Blueprint("main", __name__)
 

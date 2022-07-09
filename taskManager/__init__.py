@@ -1,13 +1,25 @@
 import os
 import re
-from flask import Flask
+from flask import Flask, Blueprint
 from flask_sqlalchemy import SQLAlchemy
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
+from pymongo import MongoClient
+
 if os.path.exists("env.py"):
     import env  # moqa
 
-app = Flask(__name__)
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+def taskmanager():
+    app = Flask(__name__)
 
+    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+    app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+    app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+    app.secret_key = os.environ.get("SECRET_KEY")
+    
+    from .routes import routes 
+
+# code to tell Heroku to change the uri name to postgresql
 if os.environ.get("DEVELOPMENT") == "True":
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
 else:
@@ -17,5 +29,5 @@ else:
     app.config["SQLALCHEMY_DATABASE_URI"] = uri  # Heroku
 
 db = SQLAlchemy(app)
+mongo = PyMongo(db)
 
-from taskManager import routes  # moqa

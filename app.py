@@ -1,17 +1,7 @@
-import os
-
-from flask import Flask
-
-if os.path.exists("env.py"):
-    import env
+from taskManager import taskmanager
 
 
-app = Flask(__name__)
-
-
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+app = taskmanager()
 
 
 if __name__ == '__main__':

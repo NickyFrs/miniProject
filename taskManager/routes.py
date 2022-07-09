@@ -1,10 +1,12 @@
-from flask import render_template, request, redirect, url_for
+from flask import Blueprint, flash, render_template, request, redirect, url_for, session
 from taskManager import app, db
 from taskManager.models import Category, Task
 
 
 @app.route("/")
-def home():
-    return render_template("tasks.html", tasks=tasks)
+@app.route("/get_tatsk")
+def get_task():
+    task = mongo.db.task.find()
+    return render_template("tasks.html", task=task) 
 
 

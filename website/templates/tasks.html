@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+  <html lang="en>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title> Task Manager </title>
+    </head>
+
+    <body>
+
+      <h1>Task Manager</h1>
+
+      {% for task in tasks %}
+        {{ task.cartegory_name }}<br>
+        {{ task.task_name }}<br>
+        {{ task.task_description}}<br>
+        {{ task.is_urgen}}<br>
+        {{ task.due_date }}<br>
+      {% endfor %}
+
+
+
+    </body>
+
+  </html>
+
+        

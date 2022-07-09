@@ -26,7 +26,7 @@
 
     <body>
 
-      <nav>
+      {% comment %} <nav>
         <div class="nav-wrapper green darken-4">
           <a href="#!" class="brand-logo logo">Hope Music Academy UK</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -45,10 +45,10 @@
         <li><a href="{{ url_for('auth.register') }}">Register</a></li>
         <li><a href="mobile.html">Mobile</a></li>
       </ul>
-      <br>
+      <br> {% endcomment %}
       
-      <-- -->
-      {% with messages = get_flash_messages(with_categories=true %}
+      
+      {% comment %} {% with messages = get_flash_messages(with_categories=true %}
         {% if messages %}
           {% for message, category in messages %}
             {% if category == "error" %}
@@ -67,19 +67,14 @@
             {% endif %}
           {% endfor %}
         {% endif %}
-      {% endwith %}
+      {% endwith %} {% endcomment %}
 
       <main>
-
-        {% for task in tasks %}
-            {{ task.task_name }}
-            {{ task.task_description }}
-            {{ task.date_due}}
-        {% endfor %}
 
         {% block content %}
             
         {% endblock %}
+        
       </main> 
 
 

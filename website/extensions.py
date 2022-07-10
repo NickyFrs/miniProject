@@ -1,9 +1,12 @@
 import os
 from flask_pymongo import PyMongo, MongoClient
+from flask_sqlalchemy import SQLAlchemy
 
-custer = MongoClient("mongodb+srv://dbAuth:Ch3rl1na10@cluster0.rqlwn.mongodb.net/?retryWrites=true&w=majority")
+cluster = MongoClient("mongodb+srv://dbAuth:Ch3rl1na10@cluster0.rqlwn.mongodb.net/?retryWrites=true&w=majority")
 
 
 
 mongo = PyMongo()
-taskdb = custer["task_manager"]
+taskdb = cluster["task_manager"]
+db = SQLAlchemy
+DBNAME = "database.db"

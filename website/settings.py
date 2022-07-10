@@ -1,7 +1,9 @@
 import os
 
+
 if os.path.exists("env.py"):
     import env
+    
 
 MONGO_URI = "mongodb+srv://nickyfrs:Cherlina#@cluster0.rqlwn.mongodb.net/?retryWrites=true&w=majority"
 MONGO_DBNAME = os.environ.get("MONGO_DBNAME")

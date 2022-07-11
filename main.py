@@ -1,5 +1,5 @@
-from flask import (Blueprint, 
-                   render_template, url_for, 
+from flask import (Blueprint,
+                   render_template, url_for,
                    request, redirect, flash, session
                    )
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -29,23 +29,23 @@ def login():
     if request.method == 'POST':
         email = request.form.get("email")
         password = request.form.get("password")
-        
+
         userExist = taskdb.users.find_one(
             {"email": request.form.get('email')})
-        
+
         user = Users.query.filter_by(email=email).first()
-        
+
         if user:
             if check_password_hash(user.password, password):
-                flash("syou are now logged in!", category="success")
+                flash("You are now logged in!", category="success")
                 login_user(user, remember=True)
                 return redirect(url_for('main.home'))
             else:
                 flash("Incorrect password / login, please try again!", category="error")
-                
+
         else:
-            flash("Account does not exist, please register!", category="error") 
-            
+            flash("Account does not exist, please register!", category="error")
+
     return render_template("login.html", user=current_user)
 
 
@@ -83,18 +83,18 @@ def register():
         last_name = request.form.get("last_name")
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
-        
+
         # is username exists
         userExist = taskdb.users.find_one(
             {"username": request.form.get('username')})
-        
+
         userExist = taskdb.users.find_one(
             {"email": request.form.get('email')})
-        
+
         if userExist:
             flash("User already exists", category="error")
             return redirect(url_for('main.register'))
-        
+
         user = Users.query.filter_by(email=email).first()
         if user:
             flash("Email already registered", category="error")
@@ -116,7 +116,7 @@ def register():
             sdb.session.add(create_user)
             sdb.session.commit()
             flash("Registration Successful, account created in database. Thank you!", category="succsess")
-                      
+
             # Code to create a new use in the MongoDB database
             register = {
                 "username" : request.form.get('username'),
@@ -126,11 +126,12 @@ def register():
                 "last_name" : request.form.get('last_name'),
                 }
             taskdb.users.insert_one(register)
-            
+
             #start a session for the user
             session["users"] = request.form.get('username')
             login_user(current_user, remember=True)
             flash("Registration Successful, account created. Thank you!", category="succsess")
             return redirect(url_for('main.home'))
-        
+
     return render_template("register.html", user=current_user)
+

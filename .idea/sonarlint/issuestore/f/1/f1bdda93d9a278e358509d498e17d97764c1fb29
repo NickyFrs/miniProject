@@ -1,0 +1,5 @@
+
+qpython:S117!"ZRename this local variable "userExist" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÞÆ¥ú
+Lpython:S1481!"-Remove the unused local variable "userExist".(ÞÆ¥ú8šœÐùž0
+fpython:S1854X"NRemove this assignment to local variable 'userExist'; the value is never used.(ÞÆ¥ú
+xpython:S117X"ZRename this local variable "userExist" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÞÆ¥ú8œœÐùž0

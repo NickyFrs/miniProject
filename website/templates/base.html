@@ -44,27 +44,31 @@
             <a href="{{ url_for('main.home') }}" class="brand-logo logo">Hope Music Academy UK</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-              <li><a href="{{ url_for('main.home') }}">Home</a></li>
-              <li><a href="{{ url_for('main.profile') }}">profile</a></li> 
-              <li><a href="{{ url_for('main.newpost') }}">New Post</a></li> 
-              <li><a href="{{ url_for('main.posts') }}">Posts</a></li> 
-              <li><a href="{{ url_for('main.login') }}">Login</a></li> 
-              <li><a href="{{ url_for('main.logout') }}">Logout</a></li> 
-              <li><a href="{{ url_for('main.register') }}">Register</a></li>
-              <li><a href="{{ url_for('main.tasks') }}">Tasks</a></li>
+              {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('main.tasks') }}">Tasks</a></li>
+                <li><a href="{{ url_for('main.posts') }}">Posts</a></li>
+                <li><a href="{{ url_for('main.profile') }}">profile</a></li> 
+                <li><a href="{{ url_for('main.logout') }}">Logout</a></li> 
+              {% else %}
+                <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                <li><a href="{{ url_for('main.login') }}">Login</a></li> 
+                <li><a href="{{ url_for('main.register') }}">Register</a></li>
+              {% endif %}
             </ul>
           </div>
         </nav>
 
         <ul class="sidenav" id="mobile-demo">
-          <li><a href="{{ url_for('main.home') }}">Home</a></li>
-          <li><a href="{{ url_for('main.profile') }}">profile</a></li> 
-          <li><a href="{{ url_for('main.newpost') }}">New Post</a></li> 
-          <li><a href="{{ url_for('main.posts') }}">Posts</a></li> 
-          <li><a href="{{ url_for('main.login') }}">Login</a></li> 
-          <li><a href="{{ url_for('main.logout') }}">Logout</a></li> 
-          <li><a href="{{ url_for('main.register') }}">Register</a></li>
-          <!-- <li><a href="{{ url_for('main.tasks') }}">Tasks</a></li> -->
+          {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('main.tasks') }}">Tasks</a></li>
+            <li><a href="{{ url_for('main.posts') }}">Posts</a></li>
+            <li><a href="{{ url_for('main.profile') }}">profile</a></li> 
+            <li><a href="{{ url_for('main.logout') }}">Logout</a></li> 
+          {% else %}
+            <li><a href="{{ url_for('main.home') }}">Home</a></li>
+            <li><a href="{{ url_for('main.login') }}">Login</a></li> 
+            <li><a href="{{ url_for('main.register') }}">Register</a></li>
+          {% endif %}
         </ul>
       </header>
 
@@ -75,14 +79,14 @@
             {% for category, message in messages %}
               {% if category == "error" %}
                 <div class="row flashes alert alert-danger alert-dismissible" role="alert">
-                  <h5 class="lighten-4 center-align">{{ message }}</h5>
+                  <h4 class="lighten-4 center-align">{{ message }}</h4>
                     <button type="button" class="btn-danger" data-mdb-dismiss="alert" aria-hidden="true">
                       <span>close &times;</span>
                     </button>
                 </div>
               {% else %}
                 <div class="row flashes alert alert-success alert-dismissible" role="alert">
-                  <h5 class="lighten-4 center-align">{{ message }}</h5>
+                  <h4 class="lighten-4 center-align">{{ message }}</h4>
                     <button type="button" class="close btn-success" data-mdb-dismiss="alert" aria-hidden="true">
                       <span>Close &times;</span>
                     </button>

@@ -19,9 +19,29 @@ def home():
 @main.route('/tasks')
 @login_required
 def tasks():
-    tasks = taskdb.task.find()
+    tasks = list(taskdb.task.find())
     users = taskdb.users.find()
     return render_template("tasks.html", user=current_user, tasks=tasks, users=users)
+
+
+@main.route('/addtask', methods=['GET', 'POST'])
+@login_required
+def addtask():
+    if request.method == 'POST':
+        is_urgent = "on" if request.form.get("is_urgent") else "off"
+        task = {
+            'category_name' : request.form.get('category_name'),
+            'task_name' : request.form.get('task_name'),
+            'task_description': request.form.get('task_description'),
+            is_urgent: is_urgent,
+            'due_date': request.form.get('due_date'),
+            'created_by': session['user']
+        }
+        taskdb.task.insert_one(task)
+        flash("New task added successfully!")
+        return redirect(url_for("main.tasks"))
+    categories = taskdb.categories.find().sort("category_name", 1)
+    return render_template("add-task.html", user=current_user, categories=categories)
 
 
 @main.route('/login', methods=['POST', 'GET'])

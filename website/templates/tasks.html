@@ -9,13 +9,24 @@
 
 <h1>Task Manager</h1>
 
-  {% for task in tasks %}
-    {{ task.cartegory_name }}<br>
-    {{ task.task_name }}<br>
-    {{ task.task_description}}<br>
-    {{ task.is_urgen}}<br>
-    {{ task.due_date }}<br>
-  {% endfor %}
+{% for task in tasks %}
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header">
+                <i class="material-icons">filter_drama</i>
+                <strong>{{ task.task_name }}</strong> : {{ task.due_date }}
+                {% if task.is_urgen == "on" %}
+                    <i class="material-icons tooltipped" data-position="right" data-tooltip="URGENT">access_alarm</i>
+                {% endif %}
+            </div>
+            <div class="collapsible-body">
+                <strong>{{ task.cartegory_name }}</strong>
+                <p>{{ task.task_description}}</p>
+                <p><em>by: {{ task.created_by }}</em></p>
+            </div>
+        </li>
+    </ul>
+{% endfor %}
 
 
 {% endblock %}

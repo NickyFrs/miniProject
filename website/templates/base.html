@@ -46,6 +46,7 @@
             <ul class="right hide-on-med-and-down">
               {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('main.tasks') }}">Tasks</a></li>
+                <li><a href="{{ url_for('main.addtask') }}">New Tasks</a></li>
                 <li><a href="{{ url_for('main.posts') }}">Posts</a></li>
                 <li><a href="{{ url_for('main.profile') }}">profile</a></li> 
                 <li><a href="{{ url_for('main.logout') }}">Logout</a></li> 
@@ -61,6 +62,7 @@
         <ul class="sidenav" id="mobile-demo">
           {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('main.tasks') }}">Tasks</a></li>
+            <li><a href="{{ url_for('main.addtask') }}">New Tasks</a></li>
             <li><a href="{{ url_for('main.posts') }}">Posts</a></li>
             <li><a href="{{ url_for('main.profile') }}">profile</a></li> 
             <li><a href="{{ url_for('main.logout') }}">Logout</a></li> 

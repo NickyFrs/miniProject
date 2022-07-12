@@ -1,8 +1,7 @@
 
 from flask_login import UserMixin
-from datetime import datetime
 from sqlalchemy.sql import func
-from website.extensionsql import sdb
+from website.dbstore import sdb
 
 class Users(sdb.Model, UserMixin):
     id = sdb.Column(sdb.Integer, primary_key=True)

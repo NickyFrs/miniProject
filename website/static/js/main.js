@@ -1,12 +1,10 @@
 
-// JQuery code to initialize the Navigation Bar
+// JQuery initialization codes
   $(document).ready(function(){
+    // to initialize the Navigation Bar
     $('.sidenav').sidenav();
-  });
 
-
-//  JQuery code to initialize the register form
-  $(document).ready(function(){
+    // to initialize the register form
     $('input.autocomplete').autocomplete({
       data: {
         "Apple": null,
@@ -14,16 +12,12 @@
         "Google": 'https://placehold.it/250x250'
       },
     });
-  });
 
-
-// jQuery to open a modal using a trigger:
-  $(document).ready(function(){
+    //to open a modal using a trigger:
     $('.modal').modal();
-  });
 
-
-// function to reinitialize all the Materialize labels on the page
-  $(document).ready(function() {
+    // function to reinitialize all to Materialize labels on the page
     M.updateTextFields();
+
+
   });

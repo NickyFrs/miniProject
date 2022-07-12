@@ -1,9 +1,7 @@
 # Imports
 from os import path
 from flask import Flask
-from main import main
-from website.extensionsql import DBNAME, sdb
-from website.extensions import mongo
+from website.dbstore import DBNAME, sdb, mongo
 from flask_login import LoginManager
 
 
@@ -20,8 +18,10 @@ def create_app(config_object='website.settings'):
     
     # blueprint configuration
     # app.register_blueprint(main, url_prefix='/')
+    # app.register_blueprint(main)
+    from website.main.routes import main
     app.register_blueprint(main)
-    
+
     
     # this will import all of the classes from the database
     from .models import Users, Notes, Posts
@@ -30,7 +30,7 @@ def create_app(config_object='website.settings'):
     create_database(app)
     
     login_manager = LoginManager()
-    login_manager.login_view = 'auth.login' # where should the user be redirected if we are not logged in and a login is required
+    login_manager.login_view = 'main.login' # where should the user be redirected if we are not logged in and a login is required
     login_manager.init_app(app) # initialize the login manager and tell it what app we are using
     
     # function to check the id of the user agains the db to load the user
